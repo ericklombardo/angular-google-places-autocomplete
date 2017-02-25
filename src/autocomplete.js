@@ -189,7 +189,7 @@ angular.module('google.places', [])
 
                         request = angular.extend({ input: viewValue }, $scope.options);
                         autocompleteService.getPlacePredictions(request, function (predictions, status) {
-                            $scope.$apply(function () {
+                            $timeout(function () {
                                 var customPlacePredictions;
 
                                 clearPredictions();
@@ -206,7 +206,7 @@ angular.module('google.places', [])
                                 if ($scope.predictions.length > 5) {
                                     $scope.predictions.length = 5;  // trim predictions down to size
                                 }
-                            });
+                            }, 200);
                         });
 
                         if ($scope.forceSelection) {
